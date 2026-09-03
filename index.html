@@ -225,6 +225,15 @@
 
   ::-webkit-scrollbar{ width:0; height:0; }
 </style>
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "46b9c4c0-e8d8-42f7-823e-f5dbd44d1e45",
+    });
+  });
+</script>
 </head>
 <body>
 
