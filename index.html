@@ -143,7 +143,7 @@
   }
 
   /* ---------- DASHBOARD ---------- */
-  #dash{ display:none; flex-direction:column; min-height:100vh; }
+  #dash{ display:none; flex-direction:column; height:100vh; height:100dvh; overflow:hidden; }
   header.topbar{
     position:sticky; top:0; z-index:5;
     background:rgba(10,13,16,0.92);
@@ -240,7 +240,7 @@
   }
   .sort-btn.active{ border-color:var(--amber); color:var(--amber); background:var(--amber-dim); }
 
-  .list{ padding:0 0 40px; flex:1; overflow-x:auto; overflow-y:visible; }
+  .list{ padding:0 0 40px; flex:1; overflow-x:auto; overflow-y:auto; -webkit-overflow-scrolling:touch; }
   table.data-table{
     width:100%; border-collapse:collapse; font-size:13px; min-width:520px;
   }
@@ -1674,7 +1674,8 @@ function syncSortPills(){
 }
 
 function scrollListToTop(){
-  window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  const listEl = document.getElementById('list');
+  if(listEl) listEl.scrollTop = 0;
 }
 
 document.getElementById('sortDefault').onclick = () => {
