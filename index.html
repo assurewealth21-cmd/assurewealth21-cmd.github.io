@@ -47,7 +47,7 @@
     flex-direction:column;
     align-items:center;
     justify-content:center;
-    padding:32px 20px;
+    padding:16px 20px;
     min-height:100vh;
     animation:fadeIn .5s ease;
   }
@@ -56,37 +56,49 @@
   .brand{
     display:flex;
     align-items:center;
-    gap:10px;
-    margin-bottom:6px;
+    gap:8px;
+    margin-bottom:4px;
   }
   .brand-mark{
-    width:10px;height:10px;border-radius:50%;
+    width:9px;height:9px;border-radius:50%;
     background:var(--amber);
     box-shadow:0 0 12px 2px rgba(245,166,35,.6);
     animation:pulse 2.4s ease-in-out infinite;
   }
   @keyframes pulse{ 0%,100%{opacity:1} 50%{opacity:.35} }
   .brand-name{
-    font-size:19px; font-weight:700; letter-spacing:.01em;
-    text-align:center; max-width:260px; line-height:1.25;
+    font-size:17px; font-weight:700; letter-spacing:.01em;
+    text-align:center; max-width:250px; line-height:1.2;
   }
   .brand-sub{
-    color:var(--muted); font-size:12.5px; letter-spacing:.16em; text-transform:uppercase;
-    margin-bottom:28px;
+    color:var(--muted); font-size:12px; letter-spacing:.16em; text-transform:uppercase;
+    margin-bottom:14px;
   }
 
-  .gauge-wrap{ width:220px; margin-bottom:8px; }
+  .gauge-wrap{ width:170px; margin-bottom:4px; }
   .gauge-wrap svg{ width:100%; height:auto; display:block; }
   .gauge-labels{
     display:flex; justify-content:space-between;
-    width:190px; margin:2px auto 30px; font-size:10px;
-    letter-spacing:.1em; color:var(--muted); text-transform:uppercase;
+    width:146px; margin:2px auto 14px; font-size:9px;
+    letter-spacing:.08em; color:var(--muted); text-transform:uppercase;
   }
 
-  .pin-title{ font-size:14px; color:var(--muted); margin-bottom:18px; }
-  .pin-dots{ display:flex; gap:16px; margin-bottom:34px; height:16px; }
+  .pin-title{ font-size:13px; color:var(--muted); margin-bottom:10px; }
+  .code-field-wrap{ width:220px; margin-bottom:14px; text-align:center; }
+  .code-input{
+    width:100%; box-sizing:border-box;
+    background:var(--panel); border:1.5px solid var(--hairline);
+    color:var(--text); font-family:'IBM Plex Mono',monospace;
+    font-size:15px; letter-spacing:.08em; text-align:center; text-transform:uppercase;
+    padding:9px 14px; border-radius:10px; outline:none;
+    transition:border-color .15s ease;
+  }
+  .code-input:focus{ border-color:var(--amber); }
+  .code-input.err{ border-color:var(--bear); }
+  .code-input::placeholder{ color:var(--muted); text-transform:none; letter-spacing:normal; }
+  .pin-dots{ display:flex; gap:14px; margin-bottom:18px; height:14px; }
   .pin-dot{
-    width:14px; height:14px; border-radius:50%;
+    width:12px; height:12px; border-radius:50%;
     border:1.5px solid var(--hairline);
     transition:all .15s ease;
   }
@@ -104,15 +116,15 @@
 
   .keypad{
     display:grid;
-    grid-template-columns:repeat(3,72px);
-    gap:14px;
+    grid-template-columns:repeat(3,66px);
+    gap:12px;
   }
   .key{
-    width:72px; height:72px; border-radius:50%;
+    width:66px; height:66px; border-radius:50%;
     background:var(--panel);
     border:1px solid var(--hairline);
     color:var(--text);
-    font-size:24px; font-weight:500;
+    font-size:23px; font-weight:500;
     display:flex; align-items:center; justify-content:center;
     font-family:'IBM Plex Mono',monospace;
     cursor:pointer;
@@ -121,9 +133,9 @@
   }
   .key:active{ background:var(--panel-raised); transform:scale(.94); }
   .key.ghost{ background:transparent; border:none; cursor:default; }
-  .key.back{ font-size:18px; color:var(--muted); }
+  .key.back{ font-size:17px; color:var(--muted); }
 
-  .lock-status{ margin-top:26px; font-size:11.5px; color:var(--muted); text-align:center; min-height:16px; }
+  .lock-status{ margin-top:14px; font-size:11px; color:var(--muted); text-align:center; min-height:16px; }
   .lock-status.error-text{ color:var(--bear); }
   .retry-btn{
     margin-top:10px; background:none; border:1px solid var(--hairline); color:var(--muted);
@@ -143,6 +155,12 @@
   .topbar-title{ display:flex; align-items:center; gap:8px; min-width:0; }
   .topbar-title .brand-mark{ width:8px; height:8px; flex-shrink:0; }
   .topbar-title span{ font-size:14.5px; font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .topbar-actions{ display:flex; align-items:center; gap:8px; flex-shrink:0; }
+  .icon-btn{
+    background:none; border:1px solid var(--hairline); color:var(--text);
+    font-size:14px; width:30px; height:30px; border-radius:50%; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; padding:0;
+  }
   .logout-btn{
     background:none; border:1px solid var(--hairline); color:var(--muted);
     font-size:11px; padding:6px 12px; border-radius:20px; cursor:pointer;
@@ -150,6 +168,43 @@
   }
   .sync-line{ font-size:10.5px; color:var(--muted); margin-top:2px; }
   .sync-dot{ display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--bull); margin-right:5px; }
+  .search-bar{ display:flex; align-items:center; gap:8px; margin-top:12px; }
+  .search-input{
+    flex:1; box-sizing:border-box;
+    background:var(--panel); border:1.5px solid var(--hairline);
+    color:var(--text); font-family:'IBM Plex Mono',monospace;
+    font-size:14px; letter-spacing:.03em;
+    padding:9px 14px; border-radius:10px; outline:none;
+    transition:border-color .15s ease;
+  }
+  .search-input:focus{ border-color:var(--amber); }
+  .search-input::placeholder{ color:var(--muted); text-transform:none; }
+  .search-close-btn{
+    background:none; border:1px solid var(--hairline); color:var(--muted);
+    width:34px; height:34px; border-radius:10px; cursor:pointer; font-size:14px;
+    flex-shrink:0;
+  }
+  .search-results-count{ padding:12px 18px 0; font-size:11.5px; color:var(--muted); }
+  .search-card{
+    background:var(--panel); border:1px solid var(--hairline);
+    border-radius:12px; margin:10px 12px; padding:14px;
+  }
+  .search-card-top{ display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
+  .search-card-symbol{ font-size:16px; font-weight:700; font-family:'Space Grotesk',sans-serif; }
+  .search-badge{
+    font-size:9.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+    padding:3px 9px; border-radius:20px;
+  }
+  .search-badge.bull{ color:var(--bull); background:var(--bull-dim); }
+  .search-badge.bear{ color:var(--bear); background:var(--bear-dim); }
+  .search-badge.gems{ color:var(--amber); background:var(--amber-dim); }
+  .search-badge.breakouts{ color:#7C9CF5; background:#1a2035; }
+  .search-card-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:8px 14px;
+  }
+  .search-field{ display:flex; flex-direction:column; gap:2px; }
+  .search-field-label{ font-size:9.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; }
+  .search-field-value{ font-size:13px; font-family:'IBM Plex Mono',monospace; }
 
   .dash-gauge{ display:flex; align-items:center; gap:16px; margin-top:14px; }
   .dash-gauge svg{ width:96px; height:auto; flex-shrink:0; }
@@ -167,10 +222,11 @@
     color:var(--muted);
     display:flex; flex-direction:column; gap:2px;
   }
-  .tab .tcount{ font-size:16px; font-family:'IBM Plex Mono',monospace; }
+  .tab .tcount{ font-size:15px; font-family:'IBM Plex Mono',monospace; }
   .tab.active.bullish{ border-color:var(--bull); background:var(--bull-dim); color:var(--bull); }
   .tab.active.bearish{ border-color:var(--bear); background:var(--bear-dim); color:var(--bear); }
   .tab.active.gems{ border-color:var(--amber); background:var(--amber-dim); color:var(--amber); }
+  .tab.active.breakouts{ border-color:#7C9CF5; background:#1a2035; color:#7C9CF5; }
 
   .sort-bar{
     display:flex; align-items:center; gap:8px;
@@ -201,13 +257,23 @@
     color:var(--text); white-space:nowrap;
   }
   table.data-table tbody tr:nth-child(odd){ background:rgba(255,255,255,0.015); }
+  table.data-table tbody tr.row-highlight{ animation: rowFlash 2.2s ease; }
+  @keyframes rowFlash{
+    0%{ background:rgba(245,166,35,0.35); }
+    100%{ background:transparent; }
+  }
   table.data-table tbody tr:active{ background:var(--panel-raised); }
   td.symbol-cell{ font-weight:700; font-family:'Space Grotesk',sans-serif; }
+  .symbol-link{ color:inherit; text-decoration:none; }
+  .symbol-link:active{ opacity:0.6; }
   td.num{ text-align:right; font-family:'IBM Plex Mono',monospace; font-size:14.5px; }
+  td.sl-dull{ color:var(--muted); opacity:0.55; }
   td.tag-cell{ font-size:12.5px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); }
   td.tag-cell.out{ color:var(--bull); }
   td.tag-cell.down{ color:var(--bear); }
+  td.tag-cell.booked{ color:#F5D020; }
   td.time-cell{ font-size:12.5px; color:var(--muted); font-family:'IBM Plex Mono',monospace; }
+  td.gem-datetime-cell{ font-size:13.5px; color:var(--muted); font-family:'IBM Plex Mono',monospace; }
   .pct-badge{
     font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:600;
     padding:2px 8px; border-radius:6px; display:inline-block;
@@ -224,6 +290,111 @@
   @keyframes spin{ to{ transform:rotate(360deg); } }
 
   ::-webkit-scrollbar{ width:0; height:0; }
+
+  .toast-container{
+    position:fixed; top:12px; left:50%; transform:translateX(-50%);
+    z-index:999; display:flex; flex-direction:column; gap:8px;
+    align-items:center; width:calc(100% - 32px); max-width:420px;
+    pointer-events:none;
+  }
+  .toast{
+    background:var(--panel); border:1px solid var(--bull);
+    color:var(--text); padding:12px 16px; border-radius:12px;
+    text-align:left;
+    box-shadow:0 8px 24px rgba(0,0,0,0.45);
+    animation: toastIn .3s ease, toastOut .3s ease 5.7s forwards;
+    pointer-events:auto;
+    cursor:pointer;
+  }
+  .toast.toast-bear{ border-color:var(--bear); }
+  .toast.toast-gem{ border-color:var(--amber); }
+  .toast-title{ font-size:13.5px; font-weight:700; margin-bottom:5px; }
+  .toast-meta{ font-size:12.5px; color:var(--muted); margin-bottom:3px; font-family:'IBM Plex Mono',monospace; }
+  .toast-time{ font-size:11.5px; color:var(--muted); }
+
+  .badge-dot{
+    position:absolute; top:2px; right:2px;
+    width:9px; height:9px; border-radius:50%;
+    background:var(--bear); border:1.5px solid var(--bg);
+  }
+
+  .mute-menu{
+    position:absolute; top:38px; right:0; z-index:20;
+    background:var(--panel-raised); border:1px solid var(--hairline);
+    border-radius:12px; overflow:hidden; min-width:230px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.5);
+    animation:toastIn .18s ease;
+  }
+  .mute-toggle-row{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:11px 16px; border-bottom:1px solid var(--hairline);
+  }
+  .mute-toggle-label{ font-size:12.5px; color:var(--text); }
+  .mute-toggle-switch{
+    font-size:10px; font-weight:700; letter-spacing:.04em;
+    padding:5px 12px; border-radius:14px; cursor:pointer;
+    border:1px solid var(--hairline); background:var(--panel); color:var(--muted);
+    min-width:44px; text-align:center;
+  }
+  .mute-toggle-switch[data-state="on"]{
+    background:var(--bear-dim); border-color:var(--bear); color:var(--bear);
+  }
+  .mute-menu-divider{ height:1px; background:var(--hairline); }
+  .mute-menu-section-label{
+    padding:9px 16px 4px; font-size:9.5px; color:var(--muted);
+    text-transform:uppercase; letter-spacing:.06em;
+  }
+  .mute-menu-item{
+    padding:11px 16px; font-size:12.5px; color:var(--text);
+    cursor:pointer; border-bottom:1px solid var(--hairline);
+  }
+  .mute-menu-item:last-child{ border-bottom:none; }
+  .mute-menu-item:active{ background:var(--panel); }
+  .mute-menu-item.mute-menu-unmute{ color:var(--amber); font-weight:600; }
+  .mute-status{ font-size:10.5px; color:var(--amber); margin-top:3px; }
+
+  .history-overlay{
+    position:fixed; inset:0; z-index:998;
+    background:rgba(0,0,0,0.6);
+    display:flex; align-items:flex-end; justify-content:center;
+  }
+  .history-panel{
+    width:100%; max-width:480px; max-height:78vh;
+    background:var(--bg); border-top:1px solid var(--hairline);
+    border-radius:18px 18px 0 0; display:flex; flex-direction:column;
+    animation:toastIn .25s ease;
+  }
+  .history-header{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 16px 12px; border-bottom:1px solid var(--hairline);
+  }
+  .history-title{ font-size:15px; font-weight:700; font-family:'Space Grotesk',sans-serif; }
+  .history-clear-btn{
+    background:none; border:1px solid var(--hairline); color:var(--muted);
+    font-size:11px; padding:5px 11px; border-radius:16px; cursor:pointer; margin-right:8px;
+  }
+  .history-close-btn{
+    background:none; border:1px solid var(--hairline); color:var(--muted);
+    width:28px; height:28px; border-radius:50%; cursor:pointer; font-size:13px;
+  }
+  .history-list{ overflow-y:auto; padding:10px 12px 20px; }
+  .history-item{
+    background:var(--panel); border:1px solid var(--hairline);
+    border-left:3px solid var(--bull); border-radius:10px;
+    padding:11px 14px; margin-bottom:8px;
+    cursor:pointer;
+  }
+  .history-item:active{ background:var(--panel-raised); }
+  .history-item.low{ border-left-color:var(--bear); }
+  .history-item.gem{ border-left-color:var(--amber); }
+  .history-item-top{ display:flex; justify-content:space-between; align-items:center; margin-bottom:4px; }
+  .history-item-symbol{ font-weight:700; font-size:13.5px; font-family:'Space Grotesk',sans-serif; }
+  .history-item-kind{ font-size:10.5px; color:var(--muted); }
+  .history-item-meta{ font-size:11.5px; color:var(--muted); font-family:'IBM Plex Mono',monospace; margin-bottom:3px; }
+  .history-item-time{ font-size:10.5px; color:var(--muted); }
+  .history-empty{ text-align:center; color:var(--muted); font-size:13px; padding:50px 20px; }
+  @keyframes toastIn{ from{opacity:0; transform:translateY(-14px);} to{opacity:1; transform:translateY(0);} }
+  @keyframes toastOut{ from{opacity:1;} to{opacity:0; transform:translateY(-14px);} }
 </style>
 <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
 <script>
@@ -247,6 +418,11 @@
 
   <div class="gauge-wrap" id="lockGaugeWrap"></div>
 
+  <div class="code-field-wrap">
+    <div class="pin-title" style="margin-bottom:8px;">Enter your unique code</div>
+    <input type="text" id="codeInput" class="code-input" placeholder="e.g. USER1" autocomplete="off" autocapitalize="characters" spellcheck="false" />
+  </div>
+
   <div class="pin-title">Enter access PIN</div>
   <div class="pin-dots" id="pinDots">
     <div class="pin-dot"></div><div class="pin-dot"></div><div class="pin-dot"></div><div class="pin-dot"></div>
@@ -259,24 +435,70 @@
 
 <!-- ===================== DASHBOARD ===================== -->
 <div id="dash">
+  <div class="toast-container" id="toastContainer"></div>
+
+  <div class="history-overlay" id="historyOverlay" style="display:none;">
+    <div class="history-panel">
+      <div class="history-header">
+        <span class="history-title">Alert History</span>
+        <div>
+          <button class="history-clear-btn" id="historyClearBtn">Clear</button>
+          <button class="history-close-btn" id="historyCloseBtn">✕</button>
+        </div>
+      </div>
+      <div class="history-list" id="historyList"></div>
+    </div>
+  </div>
   <header class="topbar">
     <div class="topbar-row">
       <div class="topbar-title">
         <div class="brand-mark"></div>
         <span class="display">AI Powered Stock Screener</span>
       </div>
-      <button class="logout-btn" id="logoutBtn">LOCK</button>
+      <div class="topbar-actions" style="position:relative;">
+        <button class="icon-btn" id="historyBtn" aria-label="Alert History" title="View past alerts" style="position:relative;">
+          🕘<span class="badge-dot" id="historyBadge" style="display:none;"></span>
+        </button>
+        <button class="icon-btn" id="muteBtn" aria-label="Mute Alerts" title="Mute alerts">🔔</button>
+        <button class="icon-btn" id="searchToggleBtn" aria-label="Search">🔍</button>
+        <button class="logout-btn" id="logoutBtn">LOCK</button>
+
+        <div class="mute-menu" id="muteMenu" style="display:none;">
+          <div class="mute-toggle-row">
+            <span class="mute-toggle-label">Pop-up Message</span>
+            <button class="mute-toggle-switch" id="msgToggleBtn" data-state="off">OFF</button>
+          </div>
+          <div class="mute-toggle-row">
+            <span class="mute-toggle-label">Pop-up Sound</span>
+            <button class="mute-toggle-switch" id="soundToggleBtn" data-state="off">OFF</button>
+          </div>
+          <div class="mute-menu-divider"></div>
+          <div class="mute-menu-section-label">Mute Both for:</div>
+          <div class="mute-menu-item" data-mins="15">15 minutes</div>
+          <div class="mute-menu-item" data-mins="60">1 hour</div>
+          <div class="mute-menu-item" data-mins="240">4 hours</div>
+          <div class="mute-menu-item" data-mins="inf">Until I re-enable</div>
+          <div class="mute-menu-item mute-menu-unmute" id="unmuteNowItem" style="display:none;">🔔 Unmute both now</div>
+        </div>
+      </div>
     </div>
     <div class="sync-line"><span class="sync-dot" id="syncDot"></span><span id="syncText">Live</span></div>
+    <div class="mute-status" id="muteStatus" style="display:none;"></div>
 
-    <div class="dash-gauge">
+    <div class="dash-gauge" id="dashGaugeSection">
       <div id="dashGaugeWrap"></div>
       <div class="dash-gauge-meta">
         <div class="verdict" id="verdictText">Reading market pressure…</div>
         <div class="counts" id="countsText"></div>
       </div>
     </div>
+
+    <div class="search-bar" id="searchBar" style="display:none;">
+      <input type="text" id="searchInput" class="search-input" placeholder="Search stock symbol…" autocomplete="off" autocapitalize="characters" spellcheck="false" />
+      <button class="search-close-btn" id="searchCloseBtn">✕</button>
+    </div>
   </header>
+  <div class="search-results-count" id="searchResultsCount" style="display:none;"></div>
 
   <div class="tabs">
     <div class="tab active bullish" id="tabBull">
@@ -287,6 +509,10 @@
       <div class="tcount mono" id="tabBearCount">–</div>
       <div>BEARISH · Breakdowns</div>
     </div>
+    <div class="tab breakouts" id="tabBreakouts">
+      <div class="tcount mono" id="tabBreakoutsCount">–</div>
+      <div>DAILY BREAKOUTS</div>
+    </div>
     <div class="tab gems" id="tabGems">
       <div class="tcount mono" id="tabGemsCount">–</div>
       <div>HIDDEN GEMS</div>
@@ -296,7 +522,8 @@
   <div class="sort-bar">
     <span class="sort-label">Sort:</span>
     <div class="sort-btn active" id="sortDefault">% Change</div>
-    <div class="sort-btn" id="sortTime">Time · Latest first</div>
+    <div class="sort-btn" id="sortTime">Latest First</div>
+    <div class="sort-btn" id="sortRFactor">R Factor</div>
   </div>
 
   <div class="list" id="list">
@@ -311,21 +538,51 @@ const GID_BULL   = '1040392374';
 const GID_BEAR   = '752048087';
 const GID_SETTINGS = '1142505341';
 const GID_GEMS   = '1115689663';
+const GID_BREAKOUTS = '1376232798';
 const PIN_REFRESH_MS = 300000; // 5 minutes
 const DATA_REFRESH_MS = 20000;
 
 /* ============ STATE ============ */
 let currentPin = null;
+let validCodes = [];
 let enteredDigits = [];
 let unlocked = false;
 let activeTab = 'bull';
+let searchQuery = '';
+let lastHighMap = {};
+let highBaselineSet = false;
+let lastLowMap = {};
+let lowBaselineSet = false;
+let seenGemKeys = new Set();
+let gemBaselineSet = false;
+let lastLtpMapBull = {};
+let bullExpressBaselineSet = false;
+let lastLtpMapBear = {};
+let bearExpressBaselineSet = false;
 let bullRows = [];
 let bearRows = [];
 let gemRows = [];
+let breakoutRows = [];
+let breakoutsSortMode = 'time'; // 'time' or 'pct' — defaults to latest-first
 let sortMode = 'default'; // 'default' or 'time' — for Bullish/Bearish tabs
 let gemsSortMode = 'time'; // 'time' or 'pct' — for Hidden Gems tab, defaults to latest-first
 
 const MONTH_MAP = {jan:0,feb:1,mar:2,apr:3,may:4,jun:5,jul:6,aug:7,sep:8,oct:9,nov:10,dec:11};
+
+function breakoutSortKey(row){
+  const ds = String(row.signalDate || '').trim();
+  const dm = ds.match(/(\d{1,2})-([A-Za-z]{3})-(\d{2,4})/);
+  if(dm){
+    const day = parseInt(dm[1], 10);
+    const mon = MONTH_MAP[dm[2].toLowerCase()];
+    let year = parseInt(dm[3], 10);
+    if(year < 100) year += 2000;
+    if(mon !== undefined) return (year * 10000) + ((mon + 1) * 100) + day;
+  }
+  const d = new Date(ds);
+  if(!isNaN(d.getTime())) return (d.getFullYear() * 10000) + ((d.getMonth()+1) * 100) + d.getDate();
+  return 0;
+}
 
 function gemSortKey(row){
   // Parse "Signal Date" like "21-Aug-26" into a comparable YYYYMMDD number
@@ -407,6 +664,16 @@ function colIndex(cols, needle){
   return cols.findIndex(c => (c.label||'').toLowerCase().includes(needle.toLowerCase()));
 }
 
+function colIndexExact(cols, needle){
+  return cols.findIndex(c => (c.label||'').trim().toLowerCase() === needle.toLowerCase());
+}
+
+function tvSymbolLink(symbol){
+  const clean = String(symbol || '').trim().toUpperCase().replace(/[^A-Z0-9]/g, '');
+  const url = 'https://www.tradingview.com/chart/?symbol=NSE:' + encodeURIComponent(clean);
+  return `<a href="${url}" target="_blank" rel="noopener noreferrer" class="symbol-link">${symbol}</a>`;
+}
+
 function parseStockTable(data){
   const cols = data.table.cols;
   const iSym  = colIndex(cols, 'Symbol');
@@ -414,6 +681,14 @@ function parseStockTable(data){
   const iPct  = colIndex(cols, '% Chang');
   const iTag  = colIndex(cols, 'B.Out');
   const iTime = colIndex(cols, 'Break C');
+  const iRFactor = colIndex(cols, 'R Factor');
+  const iZone = colIndex(cols, 'Zone');
+  const iSL = (colIndex(cols, 'SL Below') >= 0) ? colIndex(cols, 'SL Below') : colIndex(cols, 'SL Above');
+  const iTurnover = colIndex(cols, 'TurnOver');
+  const iOpen = colIndexExact(cols, 'Open');
+  const iHigh = colIndexExact(cols, 'High');
+  const iLow = colIndexExact(cols, 'Low');
+  const iPreClose = (colIndexExact(cols, 'Pre. Close') >= 0) ? colIndexExact(cols, 'Pre. Close') : colIndex(cols, 'Pre');
   const rows = [];
   (data.table.rows||[]).forEach(r => {
     const c = r.c || [];
@@ -427,7 +702,50 @@ function parseStockTable(data){
       pctText: String(pctRaw),
       pctNum: isNaN(pctNum) ? 0 : pctNum,
       tag: iTag>=0 && c[iTag] ? (c[iTag].v||'') : '',
-      time: iTime>=0 && c[iTime] ? (c[iTime].f||c[iTime].v||'') : ''
+      time: iTime>=0 && c[iTime] ? (c[iTime].f||c[iTime].v||'') : '',
+      rFactor: iRFactor>=0 && c[iRFactor] ? (c[iRFactor].f || c[iRFactor].v || '') : '',
+      rFactorNum: iRFactor>=0 && c[iRFactor] && c[iRFactor].v !== null && c[iRFactor].v !== undefined
+        ? parseFloat(String(c[iRFactor].v).replace(/[^0-9.\-]/g,'')) || 0
+        : 0,
+      zone: iZone>=0 && c[iZone] ? (c[iZone].f || c[iZone].v || '') : '',
+      sl: iSL>=0 && c[iSL] ? (c[iSL].f || c[iSL].v || '') : '',
+      turnover: iTurnover>=0 && c[iTurnover] ? (c[iTurnover].f || c[iTurnover].v || '') : '',
+      open: iOpen>=0 && c[iOpen] ? (c[iOpen].f || c[iOpen].v || '') : '',
+      high: iHigh>=0 && c[iHigh] ? (c[iHigh].f || c[iHigh].v || '') : '',
+      low: iLow>=0 && c[iLow] ? (c[iLow].f || c[iLow].v || '') : '',
+      preClose: iPreClose>=0 && c[iPreClose] ? (c[iPreClose].f || c[iPreClose].v || '') : ''
+    });
+  });
+  return rows;
+}
+
+function parseBreakoutsTable(data){
+  const cols = data.table.cols;
+  const iDate = colIndex(cols, 'Signal Date');
+  const iSym  = colIndex(cols, 'Symbol');
+  const iPrice = colIndex(cols, 'Signal Price');
+  const iLtp  = colIndex(cols, 'LTP');
+  const iPct  = colIndex(cols, '% Signal Change');
+  const iBreakOut = (colIndex(cols, 'Breakout') >= 0) ? colIndex(cols, 'Breakout') : colIndex(cols, 'Break Out');
+  const iBooked = colIndexExact(cols, 'Booked');
+  const rows = [];
+  (data.table.rows||[]).forEach(r => {
+    const c = r.c || [];
+    const sym = iSym>=0 && c[iSym] ? c[iSym].v : null;
+    if(!sym || String(sym).trim()==='') return;
+    const pctRaw = iPct>=0 && c[iPct] ? (c[iPct].f || c[iPct].v) : '';
+    const pctNum = parseFloat(String(pctRaw).replace('%','').replace(',',''));
+    const ltpVal = iLtp>=0 && c[iLtp] ? (c[iLtp].f || c[iLtp].v) : '';
+    if(!ltpVal || String(ltpVal).trim() === '') return;
+    rows.push({
+      signalDate: iDate>=0 && c[iDate] ? (c[iDate].f || c[iDate].v || '') : '',
+      symbol: String(sym).trim(),
+      signalPrice: iPrice>=0 && c[iPrice] ? (c[iPrice].f || c[iPrice].v) : '',
+      ltp: ltpVal,
+      pctText: String(pctRaw),
+      pctNum: isNaN(pctNum) ? 0 : pctNum,
+      breakOut: iBreakOut>=0 && c[iBreakOut] ? String(c[iBreakOut].v || '').trim() : '',
+      booked: iBooked>=0 && c[iBooked] ? String(c[iBooked].v || '').trim() : ''
     });
   });
   return rows;
@@ -441,6 +759,8 @@ function parseGemsTable(data){
   const iPrice = colIndex(cols, 'Signal Price');
   const iLtp  = colIndex(cols, 'LTP');
   const iPct  = colIndex(cols, '% Signal Change');
+  const iBooked = colIndexExact(cols, 'Booked');
+  const iBookedPrice = colIndexExact(cols, 'Booked Price');
   const rows = [];
   (data.table.rows||[]).forEach(r => {
     const c = r.c || [];
@@ -455,7 +775,9 @@ function parseGemsTable(data){
       signalPrice: iPrice>=0 && c[iPrice] ? (c[iPrice].f || c[iPrice].v) : '',
       ltp: iLtp>=0 && c[iLtp] ? (c[iLtp].f || c[iLtp].v) : '',
       pctText: String(pctRaw),
-      pctNum: isNaN(pctNum) ? 0 : pctNum
+      pctNum: isNaN(pctNum) ? 0 : pctNum,
+      booked: iBooked>=0 && c[iBooked] ? String(c[iBooked].v || '').trim() : '',
+      bookedPrice: iBookedPrice>=0 && c[iBookedPrice] ? (c[iBookedPrice].f || c[iBookedPrice].v || '') : ''
     });
   });
   return rows;
@@ -476,6 +798,20 @@ function parsePin(data){
     return String(rows[0].c[0].v).trim();
   }
   return null;
+}
+
+function parseValidCodes(data){
+  const rows = data.table.rows || [];
+  const codes = [];
+  rows.forEach(r => {
+    const c = r.c || [];
+    const cell = c[4]; // Column E
+    if(cell && cell.v !== null && cell.v !== undefined){
+      const val = String(cell.v).trim();
+      if(val !== '') codes.push(val);
+    }
+  });
+  return codes;
 }
 
 /* ============ GAUGE SVG ============ */
@@ -528,6 +864,11 @@ function renderDots(err){
 }
 
 function onKey(k){
+  if(!audioCtx){
+    try{ audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e){}
+  } else if(audioCtx.state === 'suspended'){
+    audioCtx.resume();
+  }
   if(k === 'back'){
     enteredDigits.pop();
     renderDots(false);
@@ -543,17 +884,25 @@ function onKey(k){
 
 function checkPin(){
   const entered = enteredDigits.join('');
+  const codeInputEl = document.getElementById('codeInput');
+  const enteredCode = codeInputEl.value.trim();
+
   if(currentPin === null){
-    document.getElementById('lockStatus').textContent = 'Still syncing PIN — try again in a moment';
+    document.getElementById('lockStatus').textContent = 'Still syncing — try again in a moment';
     document.getElementById('lockStatus').className = 'lock-status error-text';
     enteredDigits = [];
     renderDots(false);
     return;
   }
-  if(entered === currentPin){
+
+  const pinOk = entered === currentPin;
+  const codeOk = enteredCode !== '' && validCodes.some(c => c.toLowerCase() === enteredCode.toLowerCase());
+
+  if(pinOk && codeOk){
     unlocked = true;
     document.getElementById('lock').style.display = 'none';
     document.getElementById('dash').style.display = 'flex';
+    syncSortPills();
     loadStockData();
     if(!window._dataInterval){
       window._dataInterval = setInterval(loadStockData, DATA_REFRESH_MS);
@@ -562,7 +911,11 @@ function checkPin(){
     const dotsWrap = document.getElementById('pinDots');
     dotsWrap.classList.add('shake');
     renderDots(true);
-    document.getElementById('lockStatus').textContent = 'Incorrect PIN';
+    if(!codeOk) codeInputEl.classList.add('err');
+    let msg = 'Incorrect PIN or code';
+    if(!codeOk && pinOk) msg = 'Unique code not recognized';
+    if(codeOk && !pinOk) msg = 'Incorrect PIN';
+    document.getElementById('lockStatus').textContent = msg;
     document.getElementById('lockStatus').className = 'lock-status error-text';
     setTimeout(() => {
       dotsWrap.classList.remove('shake');
@@ -576,6 +929,7 @@ async function loadPin(){
   try{
     const data = await gvizFetch(GID_SETTINGS);
     const pin = parsePin(data);
+    validCodes = parseValidCodes(data);
     if(pin){
       currentPin = pin;
       const st = document.getElementById('lockStatus');
@@ -592,18 +946,385 @@ async function loadPin(){
 }
 
 /* ============ DASHBOARD DATA ============ */
+let audioCtx = null;
+function playChime(){
+  try{
+    if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if(audioCtx.state === 'suspended') audioCtx.resume();
+    const now = audioCtx.currentTime;
+    const notes = [ { freq: 880, start: 0, dur: 0.14 }, { freq: 1318.5, start: 0.13, dur: 0.22 } ];
+    notes.forEach(n => {
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(n.freq, now + n.start);
+      gain.gain.setValueAtTime(0, now + n.start);
+      gain.gain.linearRampToValueAtTime(0.22, now + n.start + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + n.start + n.dur);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start(now + n.start);
+      osc.stop(now + n.start + n.dur + 0.02);
+    });
+  } catch(e){ /* audio not available, fail silently */ }
+}
+
+const HISTORY_KEY = 'pressureDeskAlertHistory';
+const HISTORY_MAX = 5000;
+
+function loadHistory(){
+  try{
+    const raw = localStorage.getItem(HISTORY_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch(e){ return []; }
+}
+
+function saveHistory(list){
+  try{ localStorage.setItem(HISTORY_KEY, JSON.stringify(list)); } catch(e){}
+}
+
+function addToHistory(entry){
+  const list = loadHistory();
+  list.unshift(entry);
+  if(list.length > HISTORY_MAX) list.length = HISTORY_MAX;
+  saveHistory(list);
+  updateHistoryBadge();
+}
+
+function updateHistoryBadge(){
+  const badge = document.getElementById('historyBadge');
+  if(!badge) return;
+  let lastSeen = 0;
+  try{ lastSeen = parseInt(localStorage.getItem('pressureDeskHistorySeenAt') || '0', 10); } catch(e){}
+  const list = loadHistory();
+  const hasUnseen = list.some(item => item.ts > lastSeen);
+  badge.style.display = hasUnseen ? 'block' : 'none';
+}
+
+function renderHistoryPanel(){
+  const list = loadHistory();
+  const container = document.getElementById('historyList');
+  if(list.length === 0){
+    container.innerHTML = '<div class="history-empty">No alerts yet. New-high, new-low, and Hidden Gem alerts will appear here.</div>';
+    return;
+  }
+  const historyLabels = {
+    high: 'New High 🚀',
+    low: 'New Low 📉',
+    bullExpress: 'Bullish Express 🚀',
+    bearExpress: 'Bearish Express 📉'
+  };
+  const bearStyleKinds = ['low', 'bearExpress'];
+
+  container.innerHTML = list.map(item => {
+    if(item.kind === 'gem'){
+      return `
+        <div class="history-item gem" data-symbol="${item.symbol}" data-kind="gem">
+          <div class="history-item-top">
+            <span class="history-item-symbol">${item.symbol}</span>
+            <span class="history-item-kind">Hidden Gem 💎</span>
+          </div>
+          <div class="history-item-meta">${item.customMeta || ''}</div>
+          <div class="history-item-time">${item.dateTimeStr}</div>
+        </div>`;
+    }
+    const isBearStyle = bearStyleKinds.includes(item.kind);
+    const navKind = (item.kind === 'bullExpress') ? 'high' : (item.kind === 'bearExpress') ? 'low' : item.kind;
+    return `
+      <div class="history-item ${isBearStyle ? 'low' : ''}" data-symbol="${item.symbol}" data-kind="${navKind}">
+        <div class="history-item-top">
+          <span class="history-item-symbol">${item.symbol}</span>
+          <span class="history-item-kind">${historyLabels[item.kind] || 'New High 🚀'}</span>
+        </div>
+        <div class="history-item-meta">LTP: ₹${item.ltp || '—'} &nbsp;|&nbsp; R Factor: ${item.rFactor || '—'} &nbsp;|&nbsp; D Factor: ${item.dFactor || '—'} &nbsp;|&nbsp; Turnover: ${item.turnover || '—'} Cr</div>
+        <div class="history-item-time">${item.dateTimeStr}</div>
+      </div>`;
+  }).join('');
+}
+
+const MUTE_KEY = 'pressureDeskMuteUntil';
+const MSG_MUTE_KEY = 'pressureDeskMsgMuted';
+const SOUND_MUTE_KEY = 'pressureDeskSoundMuted';
+
+function getMuteRaw(){
+  try{ return localStorage.getItem(MUTE_KEY); } catch(e){ return null; }
+}
+
+function setMute(val){
+  try{
+    if(val === null) localStorage.removeItem(MUTE_KEY);
+    else localStorage.setItem(MUTE_KEY, val);
+  } catch(e){}
+  updateMuteUI();
+}
+
+function isMuted(){
+  const v = getMuteRaw();
+  if(!v) return false;
+  if(v === 'inf') return true;
+  const ts = parseInt(v, 10);
+  if(isNaN(ts)) return false;
+  if(Date.now() < ts) return true;
+  setMute(null);
+  return false;
+}
+
+function isMsgOnlyMuted(){
+  try{ return localStorage.getItem(MSG_MUTE_KEY) === '1'; } catch(e){ return false; }
+}
+function setMsgOnlyMuted(on){
+  try{ if(on) localStorage.setItem(MSG_MUTE_KEY, '1'); else localStorage.removeItem(MSG_MUTE_KEY); } catch(e){}
+  updateMuteUI();
+}
+
+function isSoundOnlyMuted(){
+  try{ return localStorage.getItem(SOUND_MUTE_KEY) === '1'; } catch(e){ return false; }
+}
+function setSoundOnlyMuted(on){
+  try{ if(on) localStorage.setItem(SOUND_MUTE_KEY, '1'); else localStorage.removeItem(SOUND_MUTE_KEY); } catch(e){}
+  updateMuteUI();
+}
+
+function isMessageEffectivelyMuted(){ return isMuted() || isMsgOnlyMuted(); }
+function isSoundEffectivelyMuted(){ return isMuted() || isSoundOnlyMuted(); }
+
+function updateMuteUI(){
+  const btn = document.getElementById('muteBtn');
+  const status = document.getElementById('muteStatus');
+  const unmuteItem = document.getElementById('unmuteNowItem');
+  const msgBtn = document.getElementById('msgToggleBtn');
+  const soundBtn = document.getElementById('soundToggleBtn');
+  if(!btn) return;
+
+  const v = getMuteRaw();
+  const allMuted = isMuted();
+  const msgMuted = isMessageEffectivelyMuted();
+  const soundMuted = isSoundEffectivelyMuted();
+
+  btn.textContent = msgMuted && soundMuted ? '🔇' : (msgMuted ? '🔕' : '🔔');
+  btn.title = 'Manage alert mute settings';
+  unmuteItem.style.display = allMuted ? 'block' : 'none';
+
+  if(msgBtn){
+    msgBtn.setAttribute('data-state', isMsgOnlyMuted() || allMuted ? 'on' : 'off');
+    msgBtn.textContent = isMsgOnlyMuted() || allMuted ? 'ON' : 'OFF';
+  }
+  if(soundBtn){
+    soundBtn.setAttribute('data-state', isSoundOnlyMuted() || allMuted ? 'on' : 'off');
+    soundBtn.textContent = isSoundOnlyMuted() || allMuted ? 'ON' : 'OFF';
+  }
+
+  const parts = [];
+  if(allMuted){
+    if(v === 'inf') parts.push('Both muted until you re-enable');
+    else {
+      const ts = parseInt(v, 10);
+      const minsLeft = Math.max(1, Math.ceil((ts - Date.now()) / 60000));
+      parts.push('Both muted for ' + minsLeft + ' more min');
+    }
+  } else {
+    if(isMsgOnlyMuted()) parts.push('Message muted');
+    if(isSoundOnlyMuted()) parts.push('Sound muted');
+  }
+  if(parts.length){
+    status.textContent = '🔕 ' + parts.join(' · ');
+    status.style.display = 'block';
+  } else {
+    status.style.display = 'none';
+  }
+}
+
+const TOAST_TITLES = {
+  high: (s) => s + ' is touching a new high 🚀',
+  low: (s) => s + ' is touching a new low 📉',
+  bullExpress: (s) => s + ' - Bullish Express Crossing 🚀',
+  bearExpress: (s) => s + ' - Bearish Express Crossing 📉'
+};
+const TOAST_BEAR_KINDS = ['low', 'bearExpress'];
+
+function showToast(symbol, ltp, rFactor, turnover, kind, skipHistory, forcePlay, dFactor){
+  const now = new Date();
+  const dateTimeStr = now.toLocaleString('en-IN', { day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' });
+
+  if(!skipHistory){
+    addToHistory({ symbol, ltp, rFactor, dFactor, turnover, kind, dateTimeStr, ts: now.getTime() });
+  }
+
+  if(forcePlay || !isSoundEffectivelyMuted()){
+    playChime();
+  }
+
+  if(!forcePlay && isMessageEffectivelyMuted()){
+    return;
+  }
+
+  const container = document.getElementById('toastContainer');
+  if(!container) return;
+  const isBearStyle = TOAST_BEAR_KINDS.includes(kind);
+  const navKind = (kind === 'bullExpress') ? 'high' : (kind === 'bearExpress') ? 'low' : kind;
+  const el = document.createElement('div');
+  el.className = 'toast' + (isBearStyle ? ' toast-bear' : '');
+  const titleFn = TOAST_TITLES[kind] || TOAST_TITLES.high;
+  el.innerHTML = `
+    <div class="toast-title">${titleFn(symbol)}</div>
+    <div class="toast-meta">LTP: ₹${ltp || '—'} &nbsp;|&nbsp; R Factor: ${rFactor || '—'} &nbsp;|&nbsp; D Factor: ${dFactor || '—'} &nbsp;|&nbsp; Turnover: ${turnover || '—'} Cr</div>
+    <div class="toast-time">${dateTimeStr}</div>
+  `;
+  el.addEventListener('click', () => {
+    navigateToRecord(symbol, navKind);
+    el.remove();
+  });
+  container.appendChild(el);
+  setTimeout(() => el.remove(), 6000);
+}
+
+
+function showGemToast(symbol, signalDate, signalTime, signalPrice, ltp, pctText, skipHistory, forcePlay){
+  const now = new Date();
+  const dateTimeStr = now.toLocaleString('en-IN', { day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' });
+  const metaLine = symbol + ' - LTP: ₹' + (ltp||'—');
+
+  if(!skipHistory){
+    addToHistory({ symbol, kind:'gem', dateTimeStr, ts: now.getTime(), customMeta: metaLine, customTitle: symbol + ' added to Hidden Gems 💎' });
+  }
+
+  if(forcePlay || !isSoundEffectivelyMuted()){
+    playChime();
+  }
+
+  if(!forcePlay && isMessageEffectivelyMuted()){
+    return;
+  }
+
+  const container = document.getElementById('toastContainer');
+  if(!container) return;
+  const el = document.createElement('div');
+  el.className = 'toast toast-gem';
+  el.innerHTML = `
+    <div class="toast-title">${symbol} added to Hidden Gems 💎</div>
+    <div class="toast-meta">${metaLine}</div>
+    <div class="toast-time">${dateTimeStr}</div>
+  `;
+  el.addEventListener('click', () => {
+    navigateToRecord(symbol, 'gem');
+    el.remove();
+  });
+  container.appendChild(el);
+  setTimeout(() => el.remove(), 6000);
+}
+
+function checkNewGemSignals(rows){
+  const isFirstRun = !gemBaselineSet;
+  rows.forEach(r => {
+    const key = r.symbol + '|' + (r.signalDate||'') + '|' + (r.signalTime||'');
+    if(!seenGemKeys.has(key)){
+      if(!isFirstRun){
+        showGemToast(r.symbol, r.signalDate, r.signalTime, r.signalPrice, r.ltp, r.pctText);
+      }
+      seenGemKeys.add(key);
+    }
+  });
+  gemBaselineSet = true;
+}
+
+function numFrom(val){
+  const n = parseFloat(String(val).replace(/[^0-9.\-]/g,''));
+  return isNaN(n) ? null : n;
+}
+
+function checkBullExpressCrossing(rows){
+  const isFirstRun = !bullExpressBaselineSet;
+  rows.forEach(r => {
+    const ltp = numFrom(r.ltp);
+    const open = numFrom(r.open);
+    const low = numFrom(r.low);
+    const turnover = numFrom(r.turnover);
+    const prevLtp = lastLtpMapBull[r.symbol];
+
+    if(ltp !== null && open !== null && !isFirstRun && prevLtp !== undefined){
+      const crossedAbove = prevLtp <= open && ltp > open;
+      if(crossedAbove && turnover !== null && turnover > 5 && low !== null && low < open * 0.99){
+        showToast(r.symbol, r.ltp, r.rFactor, r.turnover, 'bullExpress', false, false, r.time);
+      }
+    }
+    if(ltp !== null) lastLtpMapBull[r.symbol] = ltp;
+  });
+  bullExpressBaselineSet = true;
+}
+
+function checkBearExpressCrossing(rows){
+  const isFirstRun = !bearExpressBaselineSet;
+  rows.forEach(r => {
+    const ltp = numFrom(r.ltp);
+    const open = numFrom(r.open);
+    const high = numFrom(r.high);
+    const turnover = numFrom(r.turnover);
+    const prevLtp = lastLtpMapBear[r.symbol];
+
+    if(ltp !== null && open !== null && !isFirstRun && prevLtp !== undefined){
+      const crossedBelow = prevLtp >= open && ltp < open;
+      if(crossedBelow && turnover !== null && turnover > 5 && high !== null && high > open * 1.01){
+        showToast(r.symbol, r.ltp, r.rFactor, r.turnover, 'bearExpress', false, false, r.time);
+      }
+    }
+    if(ltp !== null) lastLtpMapBear[r.symbol] = ltp;
+  });
+  bearExpressBaselineSet = true;
+}
+
+function checkNewHighs(rows){
+  const isFirstRun = !highBaselineSet;
+  rows.forEach(r => {
+    const h = parseFloat(String(r.high).replace(/[^0-9.\-]/g,''));
+    if(isNaN(h)) return;
+    const prev = lastHighMap[r.symbol];
+    if(!isFirstRun && prev !== undefined && h > prev){
+      const turnoverNum = parseFloat(String(r.turnover).replace(/[^0-9.\-]/g,''));
+      if(!isNaN(turnoverNum) && turnoverNum > 5){
+        showToast(r.symbol, r.ltp, r.rFactor, r.turnover, 'high', false, false, r.time);
+      }
+    }
+    lastHighMap[r.symbol] = h;
+  });
+  highBaselineSet = true;
+}
+
+function checkNewLows(rows){
+  const isFirstRun = !lowBaselineSet;
+  rows.forEach(r => {
+    const lo = parseFloat(String(r.low).replace(/[^0-9.\-]/g,''));
+    if(isNaN(lo)) return;
+    const prev = lastLowMap[r.symbol];
+    if(!isFirstRun && prev !== undefined && lo < prev){
+      const turnoverNum = parseFloat(String(r.turnover).replace(/[^0-9.\-]/g,''));
+      if(!isNaN(turnoverNum) && turnoverNum > 5){
+        showToast(r.symbol, r.ltp, r.rFactor, r.turnover, 'low', false, false, r.time);
+      }
+    }
+    lastLowMap[r.symbol] = lo;
+  });
+  lowBaselineSet = true;
+}
+
 async function loadStockData(){
   try{
     document.getElementById('syncDot').style.background = 'var(--amber)';
     document.getElementById('syncText').textContent = 'Syncing…';
-    const [bullData, bearData, gemsData] = await Promise.all([
+    const [bullData, bearData, gemsData, breakoutsData] = await Promise.all([
       gvizFetch(GID_BULL),
       gvizFetch(GID_BEAR),
-      gvizFetch(GID_GEMS)
+      gvizFetch(GID_GEMS),
+      gvizFetch(GID_BREAKOUTS)
     ]);
     bullRows = parseStockTable(bullData).sort((a,b)=>b.pctNum-a.pctNum);
     bearRows = parseStockTable(bearData).sort((a,b)=>a.pctNum-b.pctNum);
     gemRows = parseGemsTable(gemsData);
+    breakoutRows = parseBreakoutsTable(breakoutsData);
+    checkNewHighs(bullRows);
+    checkNewLows(bearRows);
+    checkNewGemSignals(gemRows);
+    checkBullExpressCrossing(bullRows);
+    checkBearExpressCrossing(bearRows);
 
     document.getElementById('syncDot').style.background = 'var(--bull)';
     document.getElementById('syncText').textContent = 'Live · ' + new Date().toLocaleTimeString();
@@ -611,6 +1332,7 @@ async function loadStockData(){
     document.getElementById('tabBullCount').textContent = bullRows.length;
     document.getElementById('tabBearCount').textContent = bearRows.length;
     document.getElementById('tabGemsCount').textContent = gemRows.length;
+    document.getElementById('tabBreakoutsCount').textContent = breakoutRows.length;
 
     const bullBreakoutCount = bullRows.filter(r => /out/i.test(r.tag)).length;
     const bearBreakdownCount = bearRows.filter(r => /down/i.test(r.tag)).length;
@@ -639,8 +1361,121 @@ async function loadStockData(){
   }
 }
 
+function renderSearchResults(){
+  const list = document.getElementById('list');
+  const q = searchQuery.trim().toUpperCase();
+  const matches = [];
+
+  bullRows.forEach(r => { if(r.symbol.toUpperCase().includes(q)) matches.push({type:'bull', row:r}); });
+  bearRows.forEach(r => { if(r.symbol.toUpperCase().includes(q)) matches.push({type:'bear', row:r}); });
+  breakoutRows.forEach(r => { if(r.symbol.toUpperCase().includes(q)) matches.push({type:'breakouts', row:r}); });
+  gemRows.forEach(r => { if(r.symbol.toUpperCase().includes(q)) matches.push({type:'gems', row:r}); });
+
+  const countEl = document.getElementById('searchResultsCount');
+  if(countEl) countEl.textContent = matches.length + (matches.length === 1 ? ' match found' : ' matches found');
+
+  if(matches.length === 0){
+    list.innerHTML = '<div class="empty">No stock found matching "' + searchQuery + '".</div>';
+    return;
+  }
+
+  const badgeLabel = { bull:'Bullish', bear:'Bearish', gems:'Hidden Gem', breakouts:'Daily Breakout' };
+
+  list.innerHTML = matches.map(m => {
+    const r = m.row;
+    let fields = '';
+    if(m.type === 'bull' || m.type === 'bear'){
+      const isPos = r.pctNum >= 0;
+      fields = `
+        <div class="search-field"><div class="search-field-label">LTP</div><div class="search-field-value">₹${r.ltp}</div></div>
+        <div class="search-field"><div class="search-field-label">Open % Chg</div><div class="search-field-value">${isPos?'+':''}${r.pctText}</div></div>
+        <div class="search-field"><div class="search-field-label">R Factor</div><div class="search-field-value">${r.rFactor || '—'}</div></div>
+        <div class="search-field"><div class="search-field-label">Status</div><div class="search-field-value">${r.tag || '—'}</div></div>
+        <div class="search-field"><div class="search-field-label">D Factor</div><div class="search-field-value">${r.time || '—'}</div></div>
+        <div class="search-field"><div class="search-field-label">Zone</div><div class="search-field-value">${r.zone || '—'}</div></div>
+        <div class="search-field"><div class="search-field-label">${m.type==='bear'?'SL Above':'SL Below'}</div><div class="search-field-value">${r.sl || '—'}</div></div>
+        <div class="search-field"><div class="search-field-label">AP TurnOver (Cr.)</div><div class="search-field-value">${r.turnover || '—'}</div></div>
+        <div class="search-field"><div class="search-field-label">Open</div><div class="search-field-value">${r.open || '—'}</div></div>
+        <div class="search-field"><div class="search-field-label">High</div><div class="search-field-value">${r.high || '—'}</div></div>
+        <div class="search-field"><div class="search-field-label">Low</div><div class="search-field-value">${r.low || '—'}</div></div>
+        <div class="search-field"><div class="search-field-label">Pre. Close</div><div class="search-field-value">${r.preClose || '—'}</div></div>`;
+    } else if(m.type === 'gems'){
+      fields = `
+        <div class="search-field"><div class="search-field-label">Signal Date</div><div class="search-field-value">${r.signalDate || '—'}</div></div>
+        <div class="search-field"><div class="search-field-label">Signal Time</div><div class="search-field-value">${r.signalTime || '—'}</div></div>
+        <div class="search-field"><div class="search-field-label">Signal Price</div><div class="search-field-value">₹${r.signalPrice}</div></div>
+        <div class="search-field"><div class="search-field-label">LTP</div><div class="search-field-value">₹${r.ltp}</div></div>
+        <div class="search-field"><div class="search-field-label">% Signal Chg</div><div class="search-field-value">${r.pctText}</div></div>
+        <div class="search-field"><div class="search-field-label">Booked</div><div class="search-field-value">${r.booked || '—'}</div></div>
+        <div class="search-field"><div class="search-field-label">Booked Price</div><div class="search-field-value">${r.bookedPrice ? '₹'+r.bookedPrice : '—'}</div></div>`;
+    } else {
+      fields = `
+        <div class="search-field"><div class="search-field-label">Signal Date</div><div class="search-field-value">${r.signalDate || '—'}</div></div>
+        <div class="search-field"><div class="search-field-label">Signal Price</div><div class="search-field-value">₹${r.signalPrice}</div></div>
+        <div class="search-field"><div class="search-field-label">LTP</div><div class="search-field-value">₹${r.ltp}</div></div>
+        <div class="search-field"><div class="search-field-label">% Signal Chg</div><div class="search-field-value">${r.pctText}</div></div>
+        <div class="search-field"><div class="search-field-label">Break Out</div><div class="search-field-value">${r.breakOut || '—'}</div></div>
+        <div class="search-field"><div class="search-field-label">Booked</div><div class="search-field-value">${r.booked || '—'}</div></div>`;
+    }
+    return `
+      <div class="search-card">
+        <div class="search-card-top">
+          <div class="search-card-symbol">${tvSymbolLink(r.symbol)}</div>
+          <span class="search-badge ${m.type}">${badgeLabel[m.type]}</span>
+        </div>
+        <div class="search-card-grid">${fields}</div>
+      </div>`;
+  }).join('');
+}
+
 function renderList(){
   const list = document.getElementById('list');
+
+  if(searchQuery.trim() !== ''){
+    renderSearchResults();
+    return;
+  }
+
+  if(activeTab === 'breakouts'){
+    const rows = breakoutsSortMode === 'time'
+      ? breakoutRows.slice().sort((a,b) => (breakoutSortKey(b) - breakoutSortKey(a)) || (b.pctNum - a.pctNum))
+      : breakoutRows.slice().sort((a,b) => b.pctNum - a.pctNum);
+    if(rows.length === 0){
+      list.innerHTML = '<div class="empty">No daily breakout signals yet.</div>';
+      return;
+    }
+    const body = rows.map(r => {
+      const isPos = r.pctNum >= 0;
+      const hasBreakOut = r.breakOut && r.breakOut.trim() !== '';
+      const hasBooked = r.booked && r.booked.trim() !== '';
+      return `
+        <tr data-symbol="${r.symbol}">
+          <td class="gem-datetime-cell">${r.signalDate || '—'}</td>
+          <td class="symbol-cell">${tvSymbolLink(r.symbol)}</td>
+          <td class="num">₹${r.signalPrice}</td>
+          <td class="num">₹${r.ltp}</td>
+          <td class="num"><span class="pct-badge ${isPos ? 'pos':'neg'}">${isPos ? '+':''}${r.pctText}</span></td>
+          <td class="tag-cell ${hasBreakOut ? 'out' : ''}">${r.breakOut || '—'}</td>
+          <td class="tag-cell ${hasBooked ? 'booked' : ''}">${r.booked || '—'}</td>
+        </tr>`;
+    }).join('');
+    list.innerHTML = `
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Signal Date</th>
+            <th>Symbol</th>
+            <th class="num">Signal Price</th>
+            <th class="num">LTP</th>
+            <th class="num">% Signal Chg</th>
+            <th>Break Out</th>
+            <th>Booked</th>
+          </tr>
+        </thead>
+        <tbody>${body}</tbody>
+      </table>`;
+    return;
+  }
 
   if(activeTab === 'gems'){
     const rows = gemsSortMode === 'time'
@@ -652,14 +1487,17 @@ function renderList(){
     }
     const body = rows.map(r => {
       const isPos = r.pctNum >= 0;
+      const isBooked = /booked/i.test(r.booked);
       return `
-        <tr>
-          <td class="time-cell">${r.signalDate || '—'}</td>
-          <td class="time-cell">${r.signalTime || '—'}</td>
-          <td class="symbol-cell">${r.symbol}</td>
+        <tr data-symbol="${r.symbol}">
+          <td class="gem-datetime-cell">${r.signalDate || '—'}</td>
+          <td class="gem-datetime-cell">${r.signalTime || '—'}</td>
+          <td class="symbol-cell">${tvSymbolLink(r.symbol)}</td>
           <td class="num">₹${r.signalPrice}</td>
           <td class="num">₹${r.ltp}</td>
           <td class="num"><span class="pct-badge ${isPos ? 'pos':'neg'}">${isPos ? '+':''}${r.pctText}</span></td>
+          <td class="tag-cell ${isBooked ? 'booked' : ''}">${r.booked || '—'}</td>
+          <td class="num">${r.bookedPrice ? '₹' + r.bookedPrice : '—'}</td>
         </tr>`;
     }).join('');
     list.innerHTML = `
@@ -672,6 +1510,8 @@ function renderList(){
             <th class="num">Signal Price</th>
             <th class="num">LTP</th>
             <th class="num">% Signal Chg</th>
+            <th>Booked</th>
+            <th class="num">Booked Price</th>
           </tr>
         </thead>
         <tbody>${body}</tbody>
@@ -681,22 +1521,43 @@ function renderList(){
 
   const base = activeTab === 'bull' ? bullRows : bearRows;
   const rows = sortMode === 'time'
-    ? base.slice().sort((a,b) => timeValue(b.time) - timeValue(a.time))
+    ? base.slice().sort((a,b) => {
+        const av = numFrom(a.time); const bv = numFrom(b.time);
+        if(av === null && bv === null) return 0;
+        if(av === null) return 1;
+        if(bv === null) return -1;
+        return av - bv;
+      })
+    : sortMode === 'rfactor'
+    ? base.slice().sort((a,b) => b.rFactorNum - a.rFactorNum)
     : base;
   if(rows.length === 0){
     list.innerHTML = '<div class="empty">No symbols in this list right now.</div>';
     return;
   }
+  const slLabel = activeTab === 'bear' ? 'SL Above' : 'SL Below';
   const body = rows.map(r => {
     const isPos = r.pctNum >= 0;
     const tagClass = /down/i.test(r.tag) ? 'down' : (/out/i.test(r.tag) ? 'out' : '');
+    const ltpNum = parseFloat(String(r.ltp).replace(/[^0-9.\-]/g,''));
+    const slNum = parseFloat(String(r.sl).replace(/[^0-9.\-]/g,''));
+    const slDull = (activeTab === 'bull' && !isNaN(ltpNum) && !isNaN(slNum) && slNum > ltpNum) ||
+                   (activeTab === 'bear' && !isNaN(ltpNum) && !isNaN(slNum) && slNum < ltpNum);
     return `
-      <tr>
-        <td class="symbol-cell">${r.symbol}</td>
+      <tr data-symbol="${r.symbol}">
+        <td class="symbol-cell">${tvSymbolLink(r.symbol)}</td>
         <td class="num">₹${r.ltp}</td>
+        <td class="num">${r.rFactor || '—'}</td>
         <td class="num"><span class="pct-badge ${isPos ? 'pos':'neg'}">${isPos ? '+':''}${r.pctText}</span></td>
         <td class="tag-cell ${tagClass}">${r.tag || '—'}</td>
         <td class="time-cell">${r.time || '—'}</td>
+        <td class="tag-cell ${/buying/i.test(r.zone) ? 'out' : /selling/i.test(r.zone) ? 'down' : ''}">${r.zone || '—'}</td>
+        <td class="num${slDull ? ' sl-dull' : ''}">${r.sl || '—'}</td>
+        <td class="num">${r.turnover || '—'}</td>
+        <td class="num">${r.open || '—'}</td>
+        <td class="num">${r.high || '—'}</td>
+        <td class="num">${r.low || '—'}</td>
+        <td class="num">${r.preClose || '—'}</td>
       </tr>`;
   }).join('');
   list.innerHTML = `
@@ -705,9 +1566,17 @@ function renderList(){
         <tr>
           <th>Symbol</th>
           <th class="num">LTP</th>
-          <th class="num">% Chg</th>
+          <th class="num">R Factor</th>
+          <th class="num">Open % Chg</th>
           <th>Status</th>
-          <th>Time</th>
+          <th>D Factor</th>
+          <th>Zone</th>
+          <th class="num">${slLabel}</th>
+          <th class="num">AP TurnOver (Cr.)</th>
+          <th class="num">Open</th>
+          <th class="num">High</th>
+          <th class="num">Low</th>
+          <th class="num">Pre. Close</th>
         </tr>
       </thead>
       <tbody>${body}</tbody>
@@ -719,6 +1588,7 @@ document.getElementById('tabBull').onclick = () => {
   document.getElementById('tabBull').classList.add('active');
   document.getElementById('tabBear').classList.remove('active');
   document.getElementById('tabGems').classList.remove('active');
+  document.getElementById('tabBreakouts').classList.remove('active');
   syncSortPills();
   renderList();
 };
@@ -727,6 +1597,7 @@ document.getElementById('tabBear').onclick = () => {
   document.getElementById('tabBear').classList.add('active');
   document.getElementById('tabBull').classList.remove('active');
   document.getElementById('tabGems').classList.remove('active');
+  document.getElementById('tabBreakouts').classList.remove('active');
   syncSortPills();
   renderList();
 };
@@ -735,40 +1606,230 @@ document.getElementById('tabGems').onclick = () => {
   document.getElementById('tabGems').classList.add('active');
   document.getElementById('tabBull').classList.remove('active');
   document.getElementById('tabBear').classList.remove('active');
+  document.getElementById('tabBreakouts').classList.remove('active');
   syncSortPills();
   renderList();
 };
+document.getElementById('tabBreakouts').onclick = () => {
+  activeTab = 'breakouts';
+  document.getElementById('tabBreakouts').classList.add('active');
+  document.getElementById('tabBull').classList.remove('active');
+  document.getElementById('tabBear').classList.remove('active');
+  document.getElementById('tabGems').classList.remove('active');
+  syncSortPills();
+  renderList();
+};
+function navigateToRecord(symbol, kind){
+  // Close any open overlays/search so the tab view is visible
+  const historyOverlay = document.getElementById('historyOverlay');
+  if(historyOverlay) historyOverlay.style.display = 'none';
+
+  if(searchQuery.trim() !== ''){
+    searchQuery = '';
+    document.getElementById('searchInput').value = '';
+    document.getElementById('searchBar').style.display = 'none';
+    document.getElementById('searchResultsCount').style.display = 'none';
+    document.getElementById('dashGaugeSection').style.display = 'flex';
+    document.querySelector('.tabs').style.display = 'flex';
+    document.querySelector('.sort-bar').style.display = 'flex';
+  }
+
+  const tabMap = { high:'bull', low:'bear', gem:'gems' };
+  const targetTab = tabMap[kind] || 'bull';
+  activeTab = targetTab;
+  document.getElementById('tabBull').classList.toggle('active', targetTab === 'bull');
+  document.getElementById('tabBear').classList.toggle('active', targetTab === 'bear');
+  document.getElementById('tabGems').classList.toggle('active', targetTab === 'gems');
+  document.getElementById('tabBreakouts').classList.toggle('active', targetTab === 'breakouts');
+  syncSortPills();
+  renderList();
+
+  setTimeout(() => {
+    const row = document.querySelector('tr[data-symbol="' + CSS.escape(symbol) + '"]');
+    if(row){
+      row.scrollIntoView({ behavior:'smooth', block:'center' });
+      row.classList.add('row-highlight');
+      setTimeout(() => row.classList.remove('row-highlight'), 2200);
+    }
+  }, 60);
+}
+
 function syncSortPills(){
   const isGems = activeTab === 'gems';
-  const isTimeActive = isGems ? gemsSortMode === 'time' : sortMode === 'time';
+  const isBreakouts = activeTab === 'breakouts';
+  const isBullBear = activeTab === 'bull' || activeTab === 'bear';
+  const rFactorBtn = document.getElementById('sortRFactor');
+  rFactorBtn.style.display = isBullBear ? 'block' : 'none';
+
+  let isTimeActive, isRFactorActive;
+  if(isGems){ isTimeActive = gemsSortMode === 'time'; isRFactorActive = false; }
+  else if(isBreakouts){ isTimeActive = breakoutsSortMode === 'time'; isRFactorActive = false; }
+  else { isTimeActive = sortMode === 'time'; isRFactorActive = sortMode === 'rfactor'; }
+
   document.getElementById('sortTime').classList.toggle('active', isTimeActive);
-  document.getElementById('sortDefault').classList.toggle('active', !isTimeActive);
-  document.getElementById('sortDefault').textContent = isGems ? '% Signal Change' : '% Change';
+  document.getElementById('sortTime').textContent = isBullBear ? 'D Factor' : 'Latest First';
+  rFactorBtn.classList.toggle('active', isRFactorActive);
+  document.getElementById('sortDefault').classList.toggle('active', !isTimeActive && !isRFactorActive);
+  document.getElementById('sortDefault').textContent = (isGems || isBreakouts) ? '% Signal Change' : '% Change';
+}
+
+function scrollListToTop(){
+  window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
 }
 
 document.getElementById('sortDefault').onclick = () => {
-  if(activeTab === 'gems'){ gemsSortMode = 'pct'; } else { sortMode = 'default'; }
+  if(activeTab === 'gems'){ gemsSortMode = 'pct'; }
+  else if(activeTab === 'breakouts'){ breakoutsSortMode = 'pct'; }
+  else { sortMode = 'default'; }
   syncSortPills();
   renderList();
+  scrollListToTop();
 };
 document.getElementById('sortTime').onclick = () => {
-  if(activeTab === 'gems'){ gemsSortMode = 'time'; } else { sortMode = 'time'; }
+  if(activeTab === 'gems'){ gemsSortMode = 'time'; }
+  else if(activeTab === 'breakouts'){ breakoutsSortMode = 'time'; }
+  else { sortMode = 'time'; }
   syncSortPills();
   renderList();
+  scrollListToTop();
 };
+document.getElementById('sortRFactor').onclick = () => {
+  if(activeTab === 'bull' || activeTab === 'bear'){ sortMode = 'rfactor'; }
+  syncSortPills();
+  renderList();
+  scrollListToTop();
+};
+
+document.getElementById('muteBtn').onclick = (e) => {
+  e.stopPropagation();
+  const menu = document.getElementById('muteMenu');
+  const isOpening = menu.style.display === 'none';
+  menu.style.display = isOpening ? 'block' : 'none';
+  if(isOpening) updateMuteUI();
+};
+document.getElementById('msgToggleBtn').addEventListener('click', (e) => {
+  e.stopPropagation();
+  setMsgOnlyMuted(!isMsgOnlyMuted());
+});
+document.getElementById('soundToggleBtn').addEventListener('click', (e) => {
+  e.stopPropagation();
+  setSoundOnlyMuted(!isSoundOnlyMuted());
+});
+document.querySelectorAll('.mute-menu-item[data-mins]').forEach(item => {
+  item.addEventListener('click', () => {
+    const mins = item.getAttribute('data-mins');
+    if(mins === 'inf'){
+      setMute('inf');
+    } else {
+      setMute((Date.now() + parseInt(mins, 10) * 60000).toString());
+    }
+    document.getElementById('muteMenu').style.display = 'none';
+  });
+});
+document.getElementById('unmuteNowItem').addEventListener('click', () => {
+  setMute(null);
+  document.getElementById('muteMenu').style.display = 'none';
+});
+document.addEventListener('click', (e) => {
+  const menu = document.getElementById('muteMenu');
+  if(menu.style.display !== 'none' && !menu.contains(e.target) && e.target.id !== 'muteBtn'){
+    menu.style.display = 'none';
+  }
+});
+
+document.getElementById('historyBtn').onclick = () => {
+  renderHistoryPanel();
+  document.getElementById('historyOverlay').style.display = 'flex';
+  try{ localStorage.setItem('pressureDeskHistorySeenAt', Date.now().toString()); } catch(e){}
+  updateHistoryBadge();
+};
+document.getElementById('historyCloseBtn').onclick = () => {
+  document.getElementById('historyOverlay').style.display = 'none';
+};
+document.getElementById('historyOverlay').addEventListener('click', (e) => {
+  if(e.target.id === 'historyOverlay') document.getElementById('historyOverlay').style.display = 'none';
+});
+document.getElementById('historyClearBtn').onclick = () => {
+  saveHistory([]);
+  renderHistoryPanel();
+  updateHistoryBadge();
+};
+document.getElementById('historyList').addEventListener('click', (e) => {
+  const item = e.target.closest('.history-item');
+  if(!item) return;
+  const symbol = item.getAttribute('data-symbol');
+  const kind = item.getAttribute('data-kind');
+  if(symbol) navigateToRecord(symbol, kind);
+});
+
+document.getElementById('searchToggleBtn').onclick = () => {
+  const bar = document.getElementById('searchBar');
+  const isOpen = bar.style.display !== 'none';
+  if(isOpen){
+    bar.style.display = 'none';
+    searchQuery = '';
+    document.getElementById('searchInput').value = '';
+    document.getElementById('searchResultsCount').style.display = 'none';
+    document.getElementById('dashGaugeSection').style.display = 'flex';
+    document.querySelector('.tabs').style.display = 'flex';
+    document.querySelector('.sort-bar').style.display = 'flex';
+    renderList();
+  } else {
+    bar.style.display = 'flex';
+    document.getElementById('searchInput').focus();
+  }
+};
+
+document.getElementById('searchCloseBtn').onclick = () => {
+  document.getElementById('searchBar').style.display = 'none';
+  searchQuery = '';
+  document.getElementById('searchInput').value = '';
+  document.getElementById('searchResultsCount').style.display = 'none';
+  document.getElementById('dashGaugeSection').style.display = 'flex';
+  document.querySelector('.tabs').style.display = 'flex';
+  document.querySelector('.sort-bar').style.display = 'flex';
+  renderList();
+};
+
+document.getElementById('searchInput').addEventListener('input', (e) => {
+  searchQuery = e.target.value;
+  const searching = searchQuery.trim() !== '';
+  document.getElementById('searchResultsCount').style.display = searching ? 'block' : 'none';
+  document.getElementById('dashGaugeSection').style.display = searching ? 'none' : 'flex';
+  document.querySelector('.tabs').style.display = searching ? 'none' : 'flex';
+  document.querySelector('.sort-bar').style.display = searching ? 'none' : 'flex';
+  renderList();
+});
+
 document.getElementById('logoutBtn').onclick = () => {
   unlocked = false;
   enteredDigits = [];
   renderDots(false);
+  document.getElementById('codeInput').value = '';
+  document.getElementById('codeInput').classList.remove('err');
+  searchQuery = '';
+  document.getElementById('searchInput').value = '';
+  document.getElementById('searchBar').style.display = 'none';
+  document.getElementById('searchResultsCount').style.display = 'none';
+  document.getElementById('dashGaugeSection').style.display = 'flex';
   document.getElementById('dash').style.display = 'none';
   document.getElementById('lock').style.display = 'flex';
   loadPin();
 };
 
 /* ============ BOOT ============ */
+document.getElementById('codeInput').addEventListener('input', () => {
+  document.getElementById('codeInput').classList.remove('err');
+  if(enteredDigits.length === 4){
+    checkPin();
+  }
+});
 setGauge('lockGauge', 0.5);
 loadPin();
 setInterval(() => { if(!unlocked) loadPin(); }, PIN_REFRESH_MS);
+updateHistoryBadge();
+updateMuteUI();
+setInterval(updateMuteUI, 30000);
 </script>
 </body>
 </html>
